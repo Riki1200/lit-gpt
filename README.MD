@@ -4,10 +4,10 @@
 
 ---
 
-![alt text](<Simulator Screenshot - iPhone 16 Pro - 2025-04-13 at 20.34.15.png>)
+<img src="Simulator Screenshot - iPhone 16 Pro - 2025-04-13 at 20.34.15.png" alt="Screenshot" width="300"/>
 
+<img src="Simulator Screenshot - iPhone 16 Pro - 2025-04-13 at 20.34.24.png" alt="Screenshot" width="300"/>
 
-![alt text](<Simulator Screenshot - iPhone 16 Pro - 2025-04-13 at 20.34.24.png>)
 
 ## 🚀 Key Features
 

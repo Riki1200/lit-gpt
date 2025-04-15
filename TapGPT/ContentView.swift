@@ -237,5 +237,5 @@ enum SideMenuRowType: Int, CaseIterable{
 
 #Preview {
     ContentView()
-        .modelContainer(for: Item.self, inMemory: true)
+        .modelContainer(for: ChatMessage.self, inMemory: true)
 }
