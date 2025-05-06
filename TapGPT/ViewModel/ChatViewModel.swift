@@ -5,17 +5,15 @@ import SwiftData
 
 
 
-
-
 @MainActor
 class ChatViewModel: ObservableObject {
     @Published var messages: [ChatMessage] = []
     @Published var isLoading = false
     
-    let llm: Model
+    let llm: Model?
     let modelContext: ModelContext
     
-    init(model: Model, context: ModelContext) {
+    init(model: Model?, context: ModelContext) {
         self.llm = model
         self.modelContext = context
         loadMessages()
@@ -61,16 +59,17 @@ class ChatViewModel: ObservableObject {
 
         isLoading = true
 
-        await llm.respond(to: trimmed)
-        let cleanResponse = llm.output.cleanedLLMOutput()
-
-        let assistantMessage = ChatMessage(id: UUID(), text: cleanResponse, sender: .assistant, timestamp: .now)
-        modelContext.insert(assistantMessage)
-        do {
-            try modelContext.save()
-            messages.append(assistantMessage)
-        } catch {
-            print("Error saving assistant message: \(error)")
+        await llm?.respond(to: trimmed)
+        
+        if let message = llm?.output.cleanedLLMOutput() {
+            let assistantMessage = ChatMessage(id: UUID(), text: message, sender: .assistant, timestamp: .now)
+            modelContext.insert(assistantMessage)
+            do {
+                try modelContext.save()
+                messages.append(assistantMessage)
+            } catch {
+                print("Error saving assistant message: \(error)")
+            }
         }
 
         isLoading = false
