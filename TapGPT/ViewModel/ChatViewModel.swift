@@ -1,19 +1,10 @@
 
 
 import Foundation
-import LLM
 import SwiftData
 
 
-class Model: LLM {
-    convenience init() {
-        if let url = Bundle.main.url(forResource: "Llama-3.2-1B-Instruct-Q4_K_M", withExtension: "gguf") {
-            self.init(from: url, template: .chatML())!
-        } else {
-            fatalError("Model file not found in bundle.")
-        }
-    }
-}
+
 
 
 @MainActor
